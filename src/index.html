@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Browser tab: only the library name and the avatar (favicon) are shown. -->
+  <title>Open Philosophy</title>
+  <link rel="icon" type="image/png" href="logo/logo_op_def.png" />
+  <link rel="apple-touch-icon" href="logo/logo_op_def.png" />
+  <meta name="description" content="Open Philosophy — a free, open catalogue of philosophy and its neighbouring minds." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Decorative blurred background blobs for the modern glass look -->
+  <div class="bg-decor" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+  </div>
+
+  <!-- Floating navigation bar -->
+  <header class="navbar" role="banner">
+    <a class="brand" href="#/main" data-nav="main">
+      <img class="brand-logo" id="brand-logo" src="logo/logo_op_black.png" alt="Open Philosophy" />
+      <span class="brand-name" data-i18n="app.name">Open Philosophy</span>
+    </a>
+
+    <nav class="nav-tabs" role="navigation" aria-label="Primary">
+      <a class="nav-tab" href="#/main" data-nav="main" data-i18n="nav.main">Main</a>
+      <a class="nav-tab" href="#/library" data-nav="library" data-i18n="nav.library">Library</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="settings-btn" type="button"
+              aria-haspopup="dialog" aria-expanded="false" aria-label="Settings" title="Settings">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Settings dropdown -->
+  <div class="settings-panel" id="settings-panel" role="dialog" aria-label="Settings" hidden>
+    <h2 class="settings-heading" data-i18n="settings.title">Settings</h2>
+
+    <div class="settings-group">
+      <label class="settings-label" for="language-select" data-i18n="settings.language">Language</label>
+      <select class="settings-select" id="language-select"></select>
+    </div>
+
+    <div class="settings-group">
+      <span class="settings-label" data-i18n="settings.theme">Theme</span>
+      <div class="theme-toggle" role="group" aria-label="Theme">
+        <button class="theme-option" data-theme="day" type="button">
+          <span aria-hidden="true">☀️</span>
+          <span data-i18n="theme.day">Day</span>
+        </button>
+        <button class="theme-option" data-theme="night" type="button">
+          <span aria-hidden="true">🌙</span>
+          <span data-i18n="theme.night">Night</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <!-- ============================ MAIN VIEW ============================ -->
+    <section class="view view-main" id="view-main">
+      <div class="hero">
+        <img class="hero-logo" id="hero-logo" src="logo/logo_op_black.png" alt="Open Philosophy" />
+        <h1 class="hero-title" data-i18n="app.name">Open Philosophy</h1>
+        <p class="hero-tagline" data-i18n="main.tagline">
+          A free, open catalogue of philosophy and its neighbouring minds.
+        </p>
+      </div>
+
+      <div class="tiles">
+        <article class="tile glass">
+          <h2 class="tile-title" data-i18n="main.aboutTitle">About the Library</h2>
+          <p class="tile-text" data-i18n="main.aboutText"></p>
+        </article>
+
+        <article class="tile glass">
+          <h2 class="tile-title" data-i18n="main.resourcesTitle">Resources</h2>
+          <p class="tile-text" data-i18n="main.resourcesText"></p>
+          <ul class="resource-list" id="resource-list"></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================== LIBRARY VIEW ========================== -->
+    <section class="view view-library" id="view-library" hidden>
+      <div class="library-toolbar glass">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="search" id="search-input" class="search-input"
+                 data-i18n-placeholder="library.searchPlaceholder"
+                 placeholder="Search by title or author…" autocomplete="off" />
+        </div>
+      </div>
+
+      <!-- Genre sub-tabs (separate pages within the Library tab) -->
+      <nav class="genre-tabs" id="genre-tabs" aria-label="Genres"></nav>
+
+      <p class="results-count" id="results-count" aria-live="polite"></p>
+
+      <div class="catalog" id="catalog"></div>
+
+      <p class="no-results" id="no-results" data-i18n="library.noResults" hidden>
+        No books match your search.
+      </p>
+    </section>
+  </main>
+
+  <!-- ============================ BOOK MODAL ============================ -->
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal glass" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close icon-btn" id="modal-close" type="button" data-i18n-title="book.close" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+      <div class="modal-body">
+        <img class="modal-cover" id="modal-cover" src="" alt="" />
+        <div class="modal-info">
+          <h2 class="modal-title" id="modal-title"></h2>
+          <p class="modal-author" id="modal-author"></p>
+          <dl class="modal-meta">
+            <div><dt data-i18n="book.year">Year</dt><dd id="modal-year"></dd></div>
+            <div><dt data-i18n="book.genre">Genre</dt><dd id="modal-genre"></dd></div>
+          </dl>
+          <h3 class="modal-subheading" data-i18n="book.description">Description</h3>
+          <p class="modal-description" id="modal-description"></p>
+          <a class="btn-download" id="modal-download" href="#" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <path d="M7 10l5 5 5-5"></path>
+              <path d="M12 15V3"></path>
+            </svg>
+            <span data-i18n="book.download">Download</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/books.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
